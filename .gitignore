@@ -1,0 +1,6 @@
+*.log
+.idea/
+/venv
+.vagrant/
+.vagrantfile/
+.app/

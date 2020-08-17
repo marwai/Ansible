@@ -1,3 +1,19 @@
+vpc Basics
+- create computing resources* create another instance or store files
+- to protect data 
+
+Required 2 tier network for xyz - aws vpc* 
+
+instances exist within subnet
+propagation of records within Nacl lists that propagate to all the servers. In AWS is instanenous 
+
+VPC on Webapp 
+
+Private is where we have database 
+
+store computers and run data 
+
+
 # Infrastrucutre as code
 - help speeds up process of configuration management or orchestration 
 - Ansible or orchestration - terraform
@@ -5,7 +21,7 @@
 - YMAL - yet another mark up langauge 
 
 ## IAC 
-### Anisble VM/controller 
+### Ansible VM/controller 
 - 100+ servers running. Some specific taskt to run on specifics dates, times and areas. yml create one fil in controller, for example, install provision depencies without the
 the use of provision folders 
 ### Ansible - automation tool for configuration management 
@@ -125,5 +141,92 @@ ansible all -m ping
 ```
 
 
+## Ansible Ad-hoc commands
+- Why should we use them/benefits
+- When should we use/benefits 
+
+
+
+
+### Web 192.168.33.10
+### Location: USA
+
+### DB 192.168.33.11
+### Location: Dubai
+
+### Location in Germany 
+
+```
+With adhoc it is easy, fast, robust, flexible
+find location, time, space
+
+
+# Benefits
+- Ad-hoc tasks can be used to reboot servers, copy files, manage packages and users, and much 
+more. 
+- You can use any Ansible module in an ad-hoc task. Ad-hoc tasks, like playbooks, use a 
+declarative model, calculating and executing the actions required to reach a specified final state. 
+- They achieve a form of idempotence by checking the current state before they begin and doing nothing
+ unless the current state is different from the specified final state.
+```
+
+____
+
+# Linux commands in Ansible
+
+```
+# Commands in AWS controler
+$ ansible web -a "date" 
+$ ansible db -a "uname -a"
+$ ansible all -m shell -a "ls -a"
+$ ansible all -m shell -a "free"
+
+# The power of ansible is finding information across multiple in servers in matter of seconds, for example,
+imagine having 50 serverse where you need to know the time for each, instead you can run ansible 
+```
+
+___
+
+## Small exercise 
+Go the [link](https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html#why-use-ad-hoc-commands)
+- Ansible all -m setup
+- ansible all -a "df -h" # free disk space
+- ansible all -a "uptime" # uptime 
+- ansible all -m shell -a 'mpstat -P ALL' # displays the statistics of the CPU usage of the system
+- ansible all -m shell -a 'free -m'
+- all -m copy -a "src=/etc/ansible/test.sh dest=/home/vagrant" # copy files
+- ansible all -m shell -a "ls -a" # see what's inside files
+
+### Individual servers 
+- ansible web -a "uptime 
+- ansibl db -m shell -a "mpstat -P all"
+
+### Trello exercise 
+- ansible all -m shell -a "ifconfig" # find ip address
+- ansible all -m shell -a "env" # find environment variables
+- ansible all -a "uptime" # uptime
+- ansible all -a "df -h" # disk space 
+- ansible all -a "mpstat -P all" # all processes 
+
+IAAS speeds up process
+
+
+____
+
+# Playbook
+- Ansible Playbooks
+- What are they?
+- Why should we use them/benefits?
+- How to create a playbook?
+- What can we do with playbooks?
+
+__```Playbooks```__ are written in YAML .yml or .yaml 
+YAML syntax -YAML file starts with ---three dashes(---)
+
+
+____
+
 __```Additional```__
 - Zoe is in office tomorrow 
+
+

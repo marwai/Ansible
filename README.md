@@ -235,6 +235,11 @@ reusability of ansible is a great advantage. Through the use of ansible packaes 
 ansible knows al the package managers. Now this differs from Bash, Bash runs on all linux however not all package managers. 
 So using ansible we can install anything across all operating systems. 
 
+
+Why agentless?
+apart from the server, ansible is pre installed
+
+
 ```
 # This is a YAML file to install nginx onto oue web VM using YAML
 ---

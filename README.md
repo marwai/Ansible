@@ -225,8 +225,90 @@ YAML syntax -YAML file starts with ---three dashes(---)
 
 
 ____
+## Exercise 
+
+Why ansible? 
+Ansible can be used to provision multiple servers, and access them all from one central place, the controller. This saves a lot
+of time. For example, rather than  than updating dependencies or even install new packages individually using provision folders, we
+can simply do this in one central place, the controller. Not only does this same time when configurating packages but the
+reusability of ansible is a great advantage. Through the use of ansible packaes we can install any package. This is because
+ansible knows al the package managers. Now this differs from Bash, Bash runs on all linux however not all package managers. 
+So using ansible we can install anything across all operating systems. 
+
+```
+# This is a YAML file to install nginx onto oue web VM using YAML
+---
+
+# where do we want to install
+- hosts: web
+
+# get the facts
+  gather_facts: yes
+
+# changes access to root user
+  become: true
+
+# what do we want ansible to do for us in the playbook
+# In this case our only task is to install nginx
+
+
+# Install nginx
+  tasks:
+  - name: Install nginx
+    apt: pkg=nginx state=present
+
+
+# Setting up reverse proxy
+  - name: nginx reverse proxy
+    shell:  |
+      sudo unlink /etc/nginx/sites-enabled/default
+      cd /etc/nginx/sites-available
+      sudo touch reverse-proxy.conf
+      sudo chmod 666 reverse-proxy.conf
+      echo "server{
+        listen 80;
+        server_name development.local;
+        location / {
+            proxy_pass http://127.0.0.1:3000/;
+        }
+      }" >> reverse-proxy.conf
+      sudo ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf
+      sudo service nginx restart
+      nginx -t
+
+# Installing NodeJs
+  - name: Install Nodejs
+    apt: pkg=nodejs state=present
+
+
+
+# Downloading pm2
+  - name: Install pm2
+    npm:
+      name: pm2
+      global: yes
+
+
+  - name:
+    shell: |
+      cd app
+      sudo npm install -g npm
+      npm install
+      pm2 stop all
+      pm2 start app.js -f
+```
+
+
+
+
+
+____
 
 __```Additional```__
 - Zoe is in office tomorrow 
+- DevOps Concepts
+- Cloud Concepts 
+- VPC
+- TDD why tdd, link to: agile, testing, devops 
 
 

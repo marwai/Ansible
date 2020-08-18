@@ -3,4 +3,5 @@
 /venv
 .vagrant/
 .vagrantfile/
-.app/
+*.app/
+app/

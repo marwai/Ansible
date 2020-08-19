@@ -5,9 +5,9 @@
 - hosts: db
 
   gather_facts: yes
-
+  # become root user
   become: true
-
+  
   tasks:
   - name: install mongodb
     apt: pkg=mongodb state=present
@@ -22,7 +22,7 @@
       path: /etc/mongodb.conf
       state: touch
       mode: u=rw,g=r,o=r
-
+      # User = read and write permission, group member = read,other = read 
 
   - name: Insert multiple lines and Backup
     blockinfile:
@@ -38,6 +38,7 @@
           logAppend: true
           path: /var/log/mongodb/mongod.log
 
+        # Connect through port 27017
         net:
           port: 27017
           bindIp: 0.0.0.0
@@ -70,9 +71,9 @@
       path: /etc/nginx/sites-enabled/reverseproxy.conf
       state: touch
       mode: '666'
+      # Create new file and gives 666 permissions 
 
-
-  - name: Insert multiple lines and Backup
+  - name: Edit reverseproxy.conf to listen to port 80 via port 3000
     blockinfile:
       path: /etc/nginx/sites-enabled/reverseproxy.conf
       block: |
@@ -84,7 +85,7 @@
           }
         }
 
-  - name: Create a symbolic link
+  - name: Create a symbolic link with reverseproxy.conf
     file:
       src: /etc/nginx/sites-enabled/reverseproxy.conf
       dest: /etc/nginx/sites-available/reverseproxy.conf
@@ -109,8 +110,8 @@
     npm:
       name: pm2
       global: yes
-
-  - name: download latest npm
+ 
+  - name: download latest version of npm
     shell: |
       npm install -g npm@latest
       npm install mongoose -y

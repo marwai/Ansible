@@ -34,7 +34,8 @@ Vagrant.configure("2") do |config|
     #   assigning private IP
 
     config.hostsupdater.aliases = ["development.web"]
-    # creating a link called development.web so we can access web page with this link instread of an IP
+  
+  # Syncing app folder from OS to the web db
     web.vm.synced_folder "app", "/home/vagrant/app"
 
     end

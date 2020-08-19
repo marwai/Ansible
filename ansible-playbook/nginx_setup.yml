@@ -45,6 +45,7 @@
       src: /etc/nginx/sites-enabled/reverseproxy.conf
       dest: /etc/nginx/sites-available/reverseproxy.conf
       state: link
+
   #  printf() function is used to print the (“character, string, float, integer, octal and hexadecimal values”) onto the output screen
   # tee is a command in command-line interpreters (shells) using standard streams which reads standard input and writes it to both
   # standard output and one or more files

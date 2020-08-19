@@ -59,7 +59,4 @@
     become: true
     shell: systemctl start mongodb
 
-  - name: Check status
-    become: true
-    shell: systemctl status mongodb
 

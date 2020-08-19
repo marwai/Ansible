@@ -67,5 +67,7 @@ Vagrant.configure("2") do |config|
 
     config.hostsupdater.aliases = ["development.aws"] 
 
+    aws.vm.synced_folder "ansible-playbook", "/etc/ansible/"
+
    end
 end

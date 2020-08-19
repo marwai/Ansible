@@ -1,5 +1,7 @@
 #!/bin/bash
 
+vagrant up
+
 ssh vagrant@192.168.33.12 << EOF
 
 sudo apt-get install software-properties-common -y
@@ -11,12 +13,14 @@ sudo apt-get install ansible -y
 
 cd /etc/ansible
 sudo nano hosts
-sudo echo "[web]
-       192.168.33.10 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
-       [db]
-       192.168.33.11 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
-       [aws]
-       192.168.33.12 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant" >> hosts
+echo "[web]
+192.168.33.10 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant" >> hosts
+
+echo "[db]
+192.168.33.11 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant" >> hosts
+
+echo "[aws]
+192.168.33.12 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant" >> hosts
 
 cd ..
 

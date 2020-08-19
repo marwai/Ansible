@@ -2,6 +2,10 @@
 .idea/
 /venv
 .vagrant/
-.vagrantfile/
-*.app/
-app/
+.DS_Store
+app/.bash_history
+app/.cache/
+app/.npm
+app/.sudo_as_admin_successful
+app/node_modules/
+environment/.sudo_as_admin_successful
